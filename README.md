@@ -30,7 +30,7 @@ Just as what you think it
     # or: yum groupinstall 'Development Tools'
     
     
-## step 0
+## step 0 (I did it)
     hello world
     
 ## step 1
