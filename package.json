@@ -1,0 +1,17 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "description": "Just as what you think it",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuberrabbit/bookshelf.git"
+  },
+  "author": "tuber",
+  "license": "MIT",
+  "homepage": "https://github.com/tuberrabbit/bookshelf#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0"
+  }
+}
