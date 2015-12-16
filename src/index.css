@@ -2,10 +2,10 @@ html {
   font-size: 62.5%;
 }
 
-.books-list {
+.table {
   padding: 0 300px;
 }
 
-.books-list--no-record {
+.table--no-record {
   font-size: 1.4rem;
 }
