@@ -6,7 +6,14 @@ homeButton.setAttribute('class', homeButton.getAttribute('class') + ' button--se
 window.onload = function () {
   var tableHeaderList = ['Name', 'Publisher', 'By', 'ISBN', 'Price($)'];
 
-  var createRowWith = function (book) {
+  var createRow = function (book) {
+    var createButton = function (text, cb) {
+      var button = document.createElement('button');
+      button.textContent = text;
+      button.addEventListener('click', cb);
+      return button;
+    };
+
     var tr = document.createElement('tr');
     if (!book) {
       tr.textContent = 'sorry, there is no record yet.';
@@ -17,7 +24,21 @@ window.onload = function () {
         td.textContent = book[header];
         td.setAttribute('class', 'table__row--has-book');
         tr.appendChild(td);
-      })
+      });
+
+      var td = document.createElement('td');
+      td.appendChild(createButton('view', function () {
+        console.log('this is view button');
+      }));
+      td.appendChild(createButton('edit', function () {
+        console.log('this is edit button');
+      }));
+      td.appendChild(createButton('delete', function () {
+        console.log('this is delete button');
+      }));
+      td.setAttribute('class', 'table__row--has-book');
+
+      tr.appendChild(td);
     }
     return tr;
   };
@@ -29,19 +50,24 @@ window.onload = function () {
       th.textContent = header;
       th.setAttribute('class', 'table__row--header');
       tr.appendChild(th);
-    })
+    });
+
+    var th = document.createElement('th');
+    th.textContent = 'Operate';
+    th.setAttribute('class', 'table__row--header');
+    tr.appendChild(th);
     return tr;
   };
 
-  var createTableWith = function (books) {
+  var createTable = function (books) {
     var table = document.createElement('table');
     table.setAttribute('class', 'table');
     if (!books) {
-      table.appendChild(createRowWith());
+      table.appendChild(createRow());
     } else {
       table.appendChild(createTableHeader());
       books.forEach(function (book) {
-        table.appendChild(createRowWith(book));
+        table.appendChild(createRow(book));
       })
     }
     return table;
@@ -49,5 +75,5 @@ window.onload = function () {
 
   var booksList = document.querySelector('#book-list');
   var books = JSON.parse(localStorage.getItem('books'));
-  booksList.appendChild(createTableWith(books));
-}
+  booksList.appendChild(createTable(books));
+};

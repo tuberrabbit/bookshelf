@@ -26,7 +26,7 @@ window.onload = function () {
     saveToLocalStorage(newBook);
 
     location.href = '/';
-  })
-  form.querySelector('#submit').textContent = 'Add'
+  });
+  form.querySelector('#submit').textContent = 'Add';
 
-}
+};
