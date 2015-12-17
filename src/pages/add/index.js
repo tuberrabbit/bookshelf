@@ -27,6 +27,6 @@ window.onload = function () {
 
     location.href = '/';
   });
-  form.querySelector('#submit').textContent = 'Add';
 
+  form.querySelector('#submit').textContent = 'Add';
 };
