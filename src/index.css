@@ -2,10 +2,24 @@ html {
   font-size: 62.5%;
 }
 
-.table {
+.book-list {
   padding: 0 300px;
 }
 
-.table--no-record {
+.table {
+  text-align: center;
+}
+
+.table__row--header {
+  font-size: 1.8rem;
+  width: 14.5rem;
+}
+
+.table__row--has-book {
+  font-size: 1.6rem;
+  width: 14.5rem;
+}
+
+.table__row--no-book {
   font-size: 1.4rem;
 }
