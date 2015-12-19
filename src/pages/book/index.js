@@ -20,15 +20,17 @@ window.onload = function () {
     });
   }
 
-  var form = document.querySelector('form');
+  var form = document.querySelector('.form');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var elements = e.target.elements;
-    var book = {};
-    for (var i = 0; i < elements.length - 1; ++i) {
-      book[tableHeaderMapper[elements[i].name]] = elements[i].value;
+    var getBook = function (formElements) {
+      var book = {};
+      for (var index in formElements) {
+        book[tableHeaderMapper[formElements[index].name]] = formElements[index].value;
+      }
+      return book;
     }
-
+    var book = getBook(e.target.elements.slice(0, e.target.elements.length));
     if (isbn) {
       httpRequest('PUT', baseUrl + '/' + isbn, function (data) {
         console.log('PUT', data);
@@ -41,5 +43,4 @@ window.onload = function () {
       }, book);
     }
   });
-
 };

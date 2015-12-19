@@ -3,7 +3,7 @@ var getQueryParam = function (name) {
   var result = null;
   params.forEach(function (param) {
     var pair = param.split('=');
-    if (pair[0]===name){
+    if (pair[0] === name) {
       result = pair[1];
     }
   })
