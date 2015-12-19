@@ -4,3 +4,5 @@ var tableHeaderMapper = {
   'ISBN': 'isbn',
   'Price($)': 'price'
 };
+
+var baseUrl = '/books';

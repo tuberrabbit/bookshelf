@@ -10,7 +10,7 @@ document.body.appendChild(Form.import.querySelector('.form'));
 window.onload = function () {
   var isbn = getQueryParam('isbn');
   if (isbn) {
-    httpRequest('GET', 'data.json', function (book) {
+    httpRequest('GET', '../../config/aBook.json', function (book) {
       console.log('GET', book);
       for (var key in tableHeaderMapper) {
         document.querySelector('input[name="' + key + '"]').value = book[tableHeaderMapper[key]];
@@ -30,12 +30,12 @@ window.onload = function () {
     }
 
     if (isbn) {
-      httpRequest('PUT', '/books/' + isbn, function (data) {
+      httpRequest('PUT', baseUrl + '/' + isbn, function (data) {
         console.log('PUT', data);
         location.href = '/';
       }, book);
     } else {
-      httpRequest('POST', '/books', function (data) {
+      httpRequest('POST', baseUrl, function (data) {
         console.log('POST', data);
         location.href = '/';
       }, book);

@@ -30,7 +30,7 @@ window.onload = function () {
         location.href = '/pages/book?isbn=' + book[tableHeaderMapper.ISBN];
       }));
       td.appendChild(createButton('delete', function () {
-        httpRequest('DELETE', '/books/' + book[tableHeaderMapper.ISBN])
+        httpRequest('DELETE', baseUrl + '/' + book[tableHeaderMapper.ISBN])
       }));
       td.setAttribute('class', 'table__row--has-book');
 
@@ -69,7 +69,7 @@ window.onload = function () {
     return table;
   };
 
-  httpRequest('GET', 'data.json', function (books) {
+  httpRequest('GET', './config/books.json', function (books) {
     console.log('GET', books);
     var booksList = document.querySelector('#book-list');
     booksList.appendChild(createTable(books));
