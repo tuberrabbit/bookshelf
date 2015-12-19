@@ -1,11 +1,10 @@
 var Header = document.querySelector('#Header');
 document.body.appendChild(Header.import.querySelector('.header'));
+
 var homeButton = document.querySelector('#home');
 homeButton.setAttribute('class', homeButton.getAttribute('class') + ' button--selected-tab');
 
 window.onload = function () {
-  var tableHeaderList = ['Name', 'Publisher', 'By', 'ISBN', 'Price($)'];
-
   var createRow = function (book) {
     var createButton = function (text, cb) {
       var button = document.createElement('button');
@@ -19,22 +18,19 @@ window.onload = function () {
       tr.textContent = 'sorry, there is no record yet.';
       tr.setAttribute('class', 'table__row--no-book');
     } else {
-      tableHeaderList.forEach(function (header) {
+      for (var key in tableHeaderMapper) {
         var td = document.createElement('td');
-        td.textContent = book[header];
+        td.textContent = book[tableHeaderMapper[key]];
         td.setAttribute('class', 'table__row--has-book');
         tr.appendChild(td);
-      });
+      }
 
       var td = document.createElement('td');
-      td.appendChild(createButton('view', function () {
-        console.log('this is view button');
-      }));
       td.appendChild(createButton('edit', function () {
-        console.log('this is edit button');
+        location.href = '/pages/book?isbn=' + book[tableHeaderMapper.ISBN];
       }));
       td.appendChild(createButton('delete', function () {
-        console.log('this is delete button');
+        httpRequest('DELETE', '/books/' + book[tableHeaderMapper.ISBN])
       }));
       td.setAttribute('class', 'table__row--has-book');
 
@@ -45,15 +41,15 @@ window.onload = function () {
 
   var createTableHeader = function () {
     var tr = document.createElement('tr');
-    tableHeaderList.forEach(function (header) {
+    for (var key in tableHeaderMapper) {
       var th = document.createElement('th');
-      th.textContent = header;
+      th.textContent = key;
       th.setAttribute('class', 'table__row--header');
       tr.appendChild(th);
-    });
+    }
 
     var th = document.createElement('th');
-    th.textContent = 'Operate';
+    th.textContent = 'Operates';
     th.setAttribute('class', 'table__row--header');
     tr.appendChild(th);
     return tr;
@@ -73,7 +69,9 @@ window.onload = function () {
     return table;
   };
 
-  var booksList = document.querySelector('#book-list');
-  var books = JSON.parse(localStorage.getItem('books'));
-  booksList.appendChild(createTable(books));
+  httpRequest('GET', 'data.json', function (books) {
+    console.log('GET', books);
+    var booksList = document.querySelector('#book-list');
+    booksList.appendChild(createTable(books));
+  });
 };
