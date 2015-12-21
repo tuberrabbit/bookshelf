@@ -23,14 +23,11 @@ window.onload = function () {
   var form = document.querySelector('.form');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var getBook = function (formElements) {
-      var book = {};
-      for (var index in formElements) {
-        book[tableHeaderMapper[formElements[index].name]] = formElements[index].value;
-      }
-      return book;
+    var formElements = e.target.elements;
+    var book = {};
+    for (var i = 0; i < formElements.length - 1; ++i) {
+      book[tableHeaderMapper[formElements[i].name]] = formElements[i].value;
     }
-    var book = getBook(e.target.elements.slice(0, e.target.elements.length));
     if (isbn) {
       httpRequest('PUT', baseUrl + '/' + isbn, function (data) {
         console.log('PUT', data);

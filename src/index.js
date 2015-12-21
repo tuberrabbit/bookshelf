@@ -55,23 +55,16 @@ window.onload = function () {
     return tr;
   };
 
-  var createTable = function (books) {
-    var table = document.createElement('table');
-    table.setAttribute('class', 'table');
-    if (!books) {
-      table.appendChild(createRow());
-    } else {
-      table.appendChild(createTableHeader());
-      books.forEach(function (book) {
-        table.appendChild(createRow(book));
-      })
-    }
-    return table;
-  };
-
   httpRequest('GET', './config/books.json', function (books) {
     console.log('GET', books);
     var booksList = document.querySelector('#book-list');
-    booksList.appendChild(createTable(books));
+    if (!books) {
+      booksList.appendChild(createRow());
+    } else {
+      booksList.appendChild(createTableHeader());
+      books.forEach(function (book) {
+        booksList.appendChild(createRow(book));
+      })
+    }
   });
 };
