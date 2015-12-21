@@ -16,7 +16,7 @@ window.onload = function () {
         document.querySelector('input[name="' + key + '"]').value = book[tableHeaderMapper[key]];
       }
       var isbnInput = document.querySelector('input[name="ISBN"]');
-      isbnInput.setAttribute('disabled', '');
+      isbnInput.disabled = true;
     });
   }
 
