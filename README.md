@@ -16,11 +16,12 @@ Just as what you think it
 
 [slide]
 ## html template
-- DOM(Document Object Model)
+- DOM(Document Object Model) {:&.moveIn}
 - block-elements vs inline-elements
 
 [slide]
 ### DOM tree
+    <img src='../htmltree.gif'>
 
 [slide]
 ### block-elements
@@ -32,7 +33,7 @@ Just as what you think it
 
 [slide]
 ## css style
-- box model
+- box model {:&.moveIn}
 - selector
 - Pseudo-element
 - Pseudo-classes
@@ -45,12 +46,17 @@ Just as what you think it
 
 [slide]
 ### Pseudo-elements & Pseudo-classes
-
-
+    Pseudo-elements | Pseudo-classes
+    :---------------|:--------------
+    ::after         | :active
+    ::before        | :hover
+    ::first-letter  | :focus
+    ::first-line    | :visited
+    ::selection     | ...
 
 [slide]
 ## js programs
-- DOM operation
+- DOM operation {:&.moveIn}
 - ajax request
 
 [slide]
@@ -70,19 +76,19 @@ Just as what you think it
 
 [slide]
 ### step 1
-    As a user,
+    > As a user,
     I want to input an url in address bar,
     so that I can visit a web page which is named the bookshelf.
 
 [slide]
 ### step 2
-    As a user,
+    > As a user,
     I want to add a new book,
     so that I can enrich my bookshelf, and see more books on it.
 
 [slide]
 ### step 3
-    As a user,
+    > As a user,
     I want to view, edit, and delete each book on bookshelf,
     so that I can manage my bookshelf easy.
 
