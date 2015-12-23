@@ -10,60 +10,77 @@ date: 2015年12月22日
 
 [slide]
 # bookshelf
+----
 Just as what you think it
 
 
 
 [slide]
+## css style
+----
+- box model {:&.moveIn}
+- selector
+
+[slide]
+### box-model
+----
+    <img src='http://www.w3schools.com/css/box-model.gif'>
+
+[slide]
+### selector priority
+----
+1. 添加了!important享有最高优先级
+2. 第二优先级分组是style属性所嵌入的规则
+3. 第三优先级分组是具有一个或多个ID选择器的规则
+4. 第四优先级分组是具有一个或多个类,属性或伪选择器的规则
+5. 第五优先级分组是具有一个或多个元素选择器的规则
+6. 最低优先级分组是指那些只包含通配符选择器的规则
+
+
+
+[slide]
 ## html template
+----
 - DOM(Document Object Model) {:&.moveIn}
 - block-elements vs inline-elements
 
 [slide]
 ### DOM tree
-    <img src='../htmltree.gif'>
+----
+    <img src='http://www.w3schools.com/js/pic_htmltree.gif'>
 
 [slide]
 ### block-elements
+----
+- 结构块元素(ol/ul/table)
+- 终止块元素(h1/p/caption)
+- 多功能块元素(div/li/td)
 
 [slide]
 ### inline-elements
+----
+- 语义元素(span/em/strong)
+- 流动元素(br/bdo)
+- 替换元素(img/object/i)
+- 控件(input/button/select)
 
 
-
-[slide]
-## css style
-- box model {:&.moveIn}
-- selector
-- Pseudo-element
-- Pseudo-classes
-
-[slide]
-### box-model
-
-[slide]
-### selector priority
-
-[slide]
-### Pseudo-elements & Pseudo-classes
-    Pseudo-elements | Pseudo-classes
-    :---------------|:--------------
-    ::after         | :active
-    ::before        | :hover
-    ::first-letter  | :focus
-    ::first-line    | :visited
-    ::selection     | ...
 
 [slide]
 ## js programs
+----
 - DOM operation {:&.moveIn}
 - ajax request
 
 [slide]
 ### DOM operation
+----
+    > 在不刷新页面的情况下,动态更改页面
 
 [slide]
 ### ajax request
+----
+    > 实现前后端分离,让前端更加专注于数据展示方式的实现
 
 
 
@@ -76,9 +93,7 @@ Just as what you think it
 
 [slide]
 ### step 1
-    > As a user,
-    I want to input an url in address bar,
-    so that I can visit a web page which is named the bookshelf.
+    > Add more css, and make the page to be more beautiful.
 
 [slide]
 ### step 2
