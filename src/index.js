@@ -27,10 +27,12 @@ window.onload = function () {
 
       var td = document.createElement('td');
       td.appendChild(createButton('edit', function () {
-        location.href = '/pages/book?isbn=' + book[tableHeaderMapper.ISBN];
+        location.href = '/pages/book/index.html?isbn=' + book[tableHeaderMapper.ISBN];
       }));
       td.appendChild(createButton('delete', function () {
-        httpRequest('DELETE', baseUrl + '/' + book[tableHeaderMapper.ISBN])
+        httpRequest('DELETE', baseUrl + '/' + book[tableHeaderMapper.ISBN], function () {
+          location.href = '/index.html';
+        })
       }));
       td.setAttribute('class', 'table__row--has-book');
 
@@ -55,8 +57,7 @@ window.onload = function () {
     return tr;
   };
 
-  httpRequest('GET', './config/books.json', function (books) {
-    console.log('GET', books);
+  httpRequest('GET', baseUrl, function (books) {
     var booksList = document.querySelector('#book-list');
     if (!books) {
       booksList.appendChild(createRow());

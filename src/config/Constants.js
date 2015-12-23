@@ -1,5 +1,5 @@
 var tableHeaderMapper = {
-  'Name': 'name',
+  'Title': 'title',
   'Author': 'author',
   'ISBN': 'isbn',
   'Price($)': 'price'

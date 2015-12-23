@@ -10,8 +10,7 @@ document.body.appendChild(Form.import.querySelector('.form'));
 window.onload = function () {
   var isbn = getQueryParam('isbn');
   if (isbn) {
-    httpRequest('GET', '../../config/aBook.json', function (book) {
-      console.log('GET', book);
+    httpRequest('GET', baseUrl + '/' + isbn, function (book) {
       for (var key in tableHeaderMapper) {
         document.querySelector('input[name="' + key + '"]').value = book[tableHeaderMapper[key]];
       }
@@ -29,14 +28,12 @@ window.onload = function () {
       book[tableHeaderMapper[formElements[i].name]] = formElements[i].value;
     }
     if (isbn) {
-      httpRequest('PUT', baseUrl + '/' + isbn, function (data) {
-        console.log('PUT', data);
-        location.href = '/';
+      httpRequest('PUT', baseUrl + '/' + isbn, function () {
+        location.href = '/index.html';
       }, book);
     } else {
-      httpRequest('POST', baseUrl, function (data) {
-        console.log('POST', data);
-        location.href = '/';
+      httpRequest('POST', baseUrl, function () {
+        location.href = '/index.html';
       }, book);
     }
   });
