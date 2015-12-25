@@ -1,0 +1,20 @@
+h1 {
+  font-size: 96px !important;
+}
+
+h2 {
+  font-size: 72px !important;
+}
+
+h3, p, ul {
+  font-size: 48px !important;
+}
+
+img {
+  height: 600px !important;
+}
+
+iframe {
+  height: 600px !important;
+  width: 1000px !important;
+}

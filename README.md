@@ -2,11 +2,11 @@ title: View Layout -- dajiangtang
 speaker: Tuber
 url: https://github.com/tuberrabbit/bookshelf.git
 transition: slide
-files:
+files: /css/index.css
 theme: moon
 highlightStyle: monokai_sublime
 usemathjax: no
-date: 2015年12月22日
+date: 2015年12月26日
 
 [slide]
 # bookshelf
@@ -27,12 +27,22 @@ Just as what you think it
     <img src='http://www.w3schools.com/css/box-model.gif'>
 
 [slide]
+### selector #id
+----
+    <iframe data-src="http://www.w3schools.com/cssref/tryit.asp?filename=trycss_sel_id" src="about:blank;"></iframe>
+
+[slide]
+### selector .class
+----
+    <iframe data-src="http://www.w3schools.com/cssref/tryit.asp?filename=trycss_sel_class" src="about:blank;"></iframe>
+
+[slide]
 ### selector priority
 ----
 1. 添加了!important享有最高优先级
 2. 第二优先级分组是style属性所嵌入的规则
 3. 第三优先级分组是具有一个或多个ID选择器的规则
-4. 第四优先级分组是具有一个或多个类,属性或伪选择器的规则
+4. 第四优先级分组是具有一个或多个类、属性或伪选择器的规则
 5. 第五优先级分组是具有一个或多个元素选择器的规则
 6. 最低优先级分组是指那些只包含通配符选择器的规则
 
@@ -75,12 +85,12 @@ Just as what you think it
 [slide]
 ### DOM operation
 ----
-    > 在不刷新页面的情况下,动态更改页面
+    > 在不刷新页面的情况下，动态更改页面
 
 [slide]
 ### ajax request
 ----
-    > 实现前后端分离,让前端更加专注于数据展示方式的实现
+    > 实现前后端分离，让前端更加专注于数据展示方式的实现
 
 
 
