@@ -1,71 +1,71 @@
-var Header = document.querySelector('#Header');
-document.body.appendChild(Header.import.querySelector('.header'));
-
-var homeButton = document.querySelector('#home');
-homeButton.setAttribute('class', homeButton.getAttribute('class') + ' button--selected-tab');
-
 window.onload = function () {
-  var createRow = function (book) {
-    var createButton = function (text, cb) {
-      var button = document.createElement('button');
-      button.textContent = text;
-      button.addEventListener('click', cb);
-      return button;
+    var tableElements = [];
+    var booksList = document.querySelector('tbody');
+
+    var deleteRow = function (isbn) {
+        var rows = booksList.getElementsByTagName('tr');
+        for (var i = 0; i < rows.length; ++i) {
+            if (rows[i].querySelector('.col-isbn').textContent === isbn) {
+                booksList.removeChild(rows[i]);
+            }
+        }
     };
 
-    var tr = document.createElement('tr');
-    if (!book) {
-      tr.textContent = 'sorry, there is no record yet.';
-      tr.setAttribute('class', 'table__row--no-book');
-    } else {
-      for (var key in tableHeaderMapper) {
+    var createRow = function (book) {
+        var tr = document.createElement('tr');
+
+        if (!book) {
+            return tr;
+        }
+
+        for (var key in tableHeaderMapper) {
+            var td = document.createElement('td');
+            td.textContent = book[tableHeaderMapper[key]];
+            td.setAttribute('class', 'col-' + tableHeaderMapper[key]);
+            tr.appendChild(td);
+        }
+
         var td = document.createElement('td');
-        td.textContent = book[tableHeaderMapper[key]];
-        td.setAttribute('class', 'table__row--has-book');
+        var editBtn = document.createElement('a');
+        editBtn.textContent = 'edit';
+        editBtn.setAttribute('class', 'button');
+        editBtn.setAttribute('href', '/pages/book/index.html?isbn=' + book[tableHeaderMapper.ISBN]);
+        td.appendChild(editBtn);
+
+        var deleteBtn = document.createElement('a');
+        deleteBtn.textContent = 'delete';
+        deleteBtn.setAttribute('class', 'button');
+        deleteBtn.addEventListener('click', function () {
+            $.ajax({
+                url: baseUrl + '/' + book[tableHeaderMapper.ISBN],
+                type: 'DELETE',
+                success: function () {
+                    deleteRow(book[tableHeaderMapper.ISBN]);
+                }
+            });
+        });
+        td.appendChild(deleteBtn);
+
+        td.setAttribute('class', 'col-operates');
         tr.appendChild(td);
-      }
 
-      var td = document.createElement('td');
-      td.appendChild(createButton('edit', function () {
-        location.href = '/pages/book/index.html?isbn=' + book[tableHeaderMapper.ISBN];
-      }));
-      td.appendChild(createButton('delete', function () {
-        httpRequest('DELETE', baseUrl + '/' + book[tableHeaderMapper.ISBN], function () {
-          location.href = '/index.html';
-        })
-      }));
-      td.setAttribute('class', 'table__row--has-book');
 
-      tr.appendChild(td);
-    }
-    return tr;
-  };
+        return tr;
+    };
 
-  var createTableHeader = function () {
-    var tr = document.createElement('tr');
-    for (var key in tableHeaderMapper) {
-      var th = document.createElement('th');
-      th.textContent = key;
-      th.setAttribute('class', 'table__row--header');
-      tr.appendChild(th);
-    }
-
-    var th = document.createElement('th');
-    th.textContent = 'Operates';
-    th.setAttribute('class', 'table__row--header');
-    tr.appendChild(th);
-    return tr;
-  };
-
-  httpRequest('GET', baseUrl, function (books) {
-    var booksList = document.querySelector('#book-list');
-    if (!books) {
-      booksList.appendChild(createRow());
-    } else {
-      booksList.appendChild(createTableHeader());
-      books.forEach(function (book) {
-        booksList.appendChild(createRow(book));
-      })
-    }
-  });
+    $.ajax({
+        url: baseUrl,
+        dataType: 'json',
+        success: function (books) {
+            if (!books.length) {
+                booksList.appendChild(createRow());
+            } else {
+                books.forEach(function (book) {
+                    var tr = createRow(book);
+                    tableElements.push(tr);
+                    booksList.appendChild(tr);
+                });
+            }
+        }
+    });
 };
